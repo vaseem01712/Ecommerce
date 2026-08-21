@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body { @apply bg-[#eaf2ff] text-slate-800; }
+    a { @apply transition-colors duration-200; }
+}
+
+@layer components {
+    .store-shell { background: radial-gradient(circle at 78% 8%, rgba(22,119,255,.18), transparent 25%), radial-gradient(circle at 18% 33%, rgba(99,57,229,.10), transparent 28%), linear-gradient(145deg,#edf5ff 0%,#f7faff 43%,#e4efff 100%); }
+    .store-slide { opacity: 0; pointer-events: none; transition: opacity .8s ease; }
+    .store-slide.is-active { opacity: 1; pointer-events: auto; }
+    .store-slide.is-active .store-slide-copy > * { animation: store-rise .72s both; }
+    .store-slide.is-active .store-slide-copy > *:nth-child(2) { animation-delay: .08s; }
+    .store-slide.is-active .store-slide-copy > *:nth-child(3) { animation-delay: .16s; }
+    .store-slide.is-active .store-slide-copy > *:nth-child(4) { animation-delay: .24s; }
+    .store-slide.is-active .store-slide-copy > *:nth-child(5) { animation-delay: .30s; }
+    .store-slide.is-active .store-slide-image { animation: store-image-in .9s .1s both; }
+    .store-slider-dot { height: 6px; width: 6px; border-radius: 999px; background: rgba(30,41,59,.25); transition: .3s; }
+    .store-slider-dot.is-active { width: 32px; background: #1677ff; }
+    .reveal-ready { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1); }
+    .reveal-ready.is-visible { opacity: 1; transform: translateY(0); }
+    .product-rail { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(220px, 1fr); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .product-rail::-webkit-scrollbar { display: none; }
+    .product-rail > article { scroll-snap-align: start; }
+    .currency-select { color-scheme: dark; }
+}
+
+@keyframes store-rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes store-image-in { from { opacity: 0; transform: translateX(45px) scale(.94); } to { opacity: 1; transform: translateX(0) scale(1); } }
